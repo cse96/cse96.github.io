@@ -1,14 +1,14 @@
-# Sliding Window
+# Two Pointer
 
-참고:[link](https://m.blog.naver.com/kks227/220795165570)
+참고:[link](https://ssungkang.tistory.com/entry/Algorithm-Two-Pointers-%ED%88%AC-%ED%8F%AC%EC%9D%B8%ED%84%B0)
 
 연속되는 값들에서 특정한 합을 찾는 알고리즘
 
-TwoPointer와 차이점은 TwoPointer는 start <= end 조건을 만족하는 서브배열의  
-길이가 제한이 없지만 Sliding Window는 제한된 길이에서 수행한다.
+서브배열이나 리스트를 생성해서 계속 합을 구하지 않고 인덱스 값을 두 개 두어
+불필요한 계산을 하지 않는다.
 
 [1,2,3,4,5] 배열이 있고 합이 5를 찾는 경우
-start = 0; end = 0;size=2;
+start = 0; end = 0;
 
 [배열]
 
@@ -37,12 +37,21 @@ start = 0, end = 1 이므로 sum = 1 + 2 => 3;
 
 [TwoPointer]
 
+| 0     | 1   | 2   | 3   | 4   |
+| ----- | --- | --- | --- | --- |
+| start | --  | end | --  | --  |
+
+찾는값 5보다 작으므로 end를 1 증가  
+start = 0, end = 2 이므로 sum = 1 + 2 + 3 => 6;
+
+[TwoPointer]
+
 | 0   | 1     | 2   | 3   | 4   |
 | --- | ----- | --- | --- | --- |
 | --  | start | end | --  | --  |
 
-찾는값 5보다 작지만 size가 2이므로
-start, end 1씩증가 sum = 2 + 3 => 5;
+찾는값 5보다 크므로 start를 1 증가  
+start = 1, end = 2 이므로 sum = 2 + 3 => 5;
 
 마지막으로
 [TwoPointer]
@@ -56,5 +65,7 @@ start, end 1씩증가 sum = 2 + 3 => 5;
 
 ---
 
-- 시간복잡도는 투 포인터와 같이 O(N)
-- DP와 결합해서 사용할 경우 윈도우 사이즈가 정해져 있어서 모든 경우를 저장하지 않는 경우 공간복잡도 O(W):W는 윈도우 사이즈
+- 배열이나 리스트에서 연속된 값들의 합을 구하는 경우 서브 배열을 두고 반복문으로  
+  서브배열의 합을 구하는 경우 시간복잡도가 O(N^2)이지만 투 포인터를 이용하면  
+  O(N)으로 해결할 수 있다.
+- start <= end를 만족해야한다.
